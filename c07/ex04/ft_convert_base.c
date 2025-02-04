@@ -6,7 +6,7 @@
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:06:53 by erpascua          #+#    #+#             */
-/*   Updated: 2025/02/04 18:16:42 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/04 20:54:37 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,34 +50,52 @@ int	nbr_len(int nb, int base_len)
 	int	i;
 
 	i = 1;
+	if (nb < 0)
+	{
+		nb = -nb;
+		i++;
+	}
 	while (nb >= base_len)
 	{
-		nb = nb / base_len;
+		nb /= base_len;
 		i++;
 	}
 	return (i);
 }
 
-char	*ft_itoa_base(int nbr, int base_len)
+char	*ft_itoa_base(int nbr, int base_len, char base)
 {
 	char	*buffer;
 	int		len;
+	int		negative;
+	long	r;
 
 	if (base_len < 2)
 		return (NULL);
+	negative = 0;
+	if (nbr < 0)
+	{
+		negative = 1;
+		nbr = -nbr;
+	}
 	len = nbr_len(nbr, base_len);
+	if (negative)
+		len++;
 	buffer = (char *) malloc ((len + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	buffer[len] = '\0';
-	while (len--)
+	while (len-- > negative)
 	{
-		if (base_len < 10)
-			buffer[len] = (nbr % base_len) + '0';
+		r = nbr % base_len;
+		if (r < 10)
+			buffer[len] = base_len ;
 		else
-			buffer[len] = (nbr % base_len) + 'A' - 10;
+			buffer[len] = r - 10 + 'A';
 		nbr = nbr / base_len;
 	}
+	if (negative)
+		buffer[0] = '-';
 	return (buffer);
 }
 
@@ -87,7 +105,7 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	char	*nbr_to;
 	int		base_len_nbr_to;
 
-	if ((is_base_valid(base_from) == -1 && is_base_valid(base_to) == -1))
+	if ((is_base_valid(base_from) <= 1 || is_base_valid(base_to) <= 1))
 		return (0);
 	base_len_nbr_to = is_base_valid(base_to);
 	nbr_to = (char *) malloc (100 * sizeof(char));
