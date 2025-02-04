@@ -6,7 +6,7 @@
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/30 00:08:04 by erpascua          #+#    #+#             */
-/*   Updated: 2025/01/30 18:13:21 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/04 14:11:35 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ int	ft_ultimate_range(int **range, int min, int max)
 	int	i;
 
 	if (min >= max)
-		return (0);
+		return (NULL);
 	i = 0;
 	itv = max - min;
 	*range = (int *)malloc(itv * sizeof(int));
-	if (!range)
+	if (!*range)
 	{
 		range = NULL;
 		return (-1);
 	}
 	while (i < itv)
 	{
-		range[0][i] = min + i;
+		(*range)[i] = min + i;
 		i++;
 	}
 	return (itv);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin_LE_VRAI.c                               :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:54:07 by erpascua          #+#    #+#             */
-/*   Updated: 2025/02/02 20:55:56 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/04 15:08:57 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,22 +53,26 @@ void	ft_strcat(char *dest, char *src)
 		len_dest++;
 		i++;
 	}
+	dest[len_dest] = '\0';
 }
 
 char	*ft_strjoin(int size, char **strs, char *sep)
 {
 	char	*str;
 	int		i;
+	int		total_len;
 
 	if (size == 0)
 	{
 		str = malloc(sizeof(char));
-		str = NULL;
+		str[0] = '\0';
 		return (str);
 	}
-	str = (char *)malloc((glob_len_calc(size, strs, sep) + 1) * sizeof(char));
+	total_len = glob_len_calc(size, strs, sep);
+	str = (char *)malloc((total_len + 1) * sizeof(char));
 	if (!str)
 		return (NULL);
+	str[0] = '\0';
 	i = 0;
 	while (i < size)
 	{
@@ -77,19 +81,19 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 			ft_strcat(str, sep);
 		i++;
 	}
-	str[glob_len_calc(size, strs, sep)] = '\0';
+	str[total_len] = '\0';
 	return (str);
 }
-/*
+
 #include <stdio.h>
 
 int	main(void)
 {
 	int		size = 7;
-	char	*strs[] = {"hello", "je", "vais", "vous", "peter", "la", "rondelle"};
-	char	*sep = " rondelle ";
+	char	*strs[] = {"voici", "un", "petit", "test", "de", "co"};
+	char	*sep = " grosse ";
 	char	*res= ft_strjoin(size, strs, sep);
 
 	printf("%s\n", res);
 	free(res);
-}*/
+}
