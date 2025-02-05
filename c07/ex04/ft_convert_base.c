@@ -6,7 +6,7 @@
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 13:06:53 by erpascua          #+#    #+#             */
-/*   Updated: 2025/02/04 20:54:37 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/05 17:06:13 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,17 +45,17 @@ int	ft_atoi_base(char *str, char *base)
 	return (result * sign);
 }
 
-int	nbr_len(int nb, int base_len)
+int	nbr_len(long nb, int base_len)
 {
 	int	i;
 
-	i = 1;
-	if (nb < 0)
+	i = 0;
+	if (nb <= 0)
 	{
 		nb = -nb;
 		i++;
 	}
-	while (nb >= base_len)
+	while (nb > 0)
 	{
 		nb /= base_len;
 		i++;
@@ -63,38 +63,29 @@ int	nbr_len(int nb, int base_len)
 	return (i);
 }
 
-char	*ft_itoa_base(int nbr, int base_len, char base)
+char	*ft_itoa_base(int nbr, int base_len, char *base)
 {
 	char	*buffer;
+	long	nb;
 	int		len;
-	int		negative;
-	long	r;
+	int		sign;
 
-	if (base_len < 2)
-		return (NULL);
-	negative = 0;
-	if (nbr < 0)
-	{
-		negative = 1;
-		nbr = -nbr;
-	}
-	len = nbr_len(nbr, base_len);
-	if (negative)
-		len++;
+	nb = (long)nbr;
+	sign = (nb < 0);
+	len = nbr_len(nb, base_len);
 	buffer = (char *) malloc ((len + 1) * sizeof(char));
 	if (!buffer)
 		return (NULL);
 	buffer[len] = '\0';
-	while (len-- > negative)
+	if (nb < 0)
+		nb = -nb;
+	while (len > sign)
 	{
-		r = nbr % base_len;
-		if (r < 10)
-			buffer[len] = base_len ;
-		else
-			buffer[len] = r - 10 + 'A';
-		nbr = nbr / base_len;
+		len--;
+		buffer[len] = base[nb % base_len];
+		nb /= base_len;
 	}
-	if (negative)
+	if (sign)
 		buffer[0] = '-';
 	return (buffer);
 }
@@ -108,12 +99,11 @@ char	*ft_convert_base(char *nbr, char *base_from, char *base_to)
 	if ((is_base_valid(base_from) <= 1 || is_base_valid(base_to) <= 1))
 		return (0);
 	base_len_nbr_to = is_base_valid(base_to);
-	nbr_to = (char *) malloc (100 * sizeof(char));
 	nbr_from = ft_atoi_base(nbr, base_from);
-	nbr_to = ft_itoa_base(nbr_from, base_len_nbr_to);
+	nbr_to = ft_itoa_base(nbr_from, base_len_nbr_to, base_to);
 	return (nbr_to);
 }
-
+/*
 #include <stdio.h>
 
 int	main(int ac, char **av)
@@ -123,4 +113,4 @@ int	main(int ac, char **av)
 	if (ac == 4)
 		printf("RESULT %s\n", res);
 	free(res);
-}
+}*/

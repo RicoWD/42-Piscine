@@ -6,7 +6,7 @@
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/02 13:54:07 by erpascua          #+#    #+#             */
-/*   Updated: 2025/02/04 15:08:57 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:10:54 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,16 +84,17 @@ char	*ft_strjoin(int size, char **strs, char *sep)
 	str[total_len] = '\0';
 	return (str);
 }
-
+/*
 #include <stdio.h>
 
 int	main(void)
 {
-	int		size = 7;
+	int		size = 6;
 	char	*strs[] = {"voici", "un", "petit", "test", "de", "co"};
 	char	*sep = " grosse ";
 	char	*res= ft_strjoin(size, strs, sep);
+	return (0);
 
 	printf("%s\n", res);
 	free(res);
-}
+}*/

@@ -6,7 +6,7 @@
 /*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 17:52:11 by erpascua          #+#    #+#             */
-/*   Updated: 2025/02/04 18:02:12 by erpascua         ###   ########.fr       */
+/*   Updated: 2025/02/05 10:18:58 by erpascua         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	get_nb_base(char *nb, char *base, int base_len)
 {
 	long	val;
 	int		i;
-	int		j;
 	long	n;
 	int		len;
 
@@ -71,7 +70,6 @@ int	get_nb_base(char *nb, char *base, int base_len)
 		n = seek_nb(nb[i], base);
 		if (n == -1)
 			return (val);
-		j = i;
 		val = val * base_len + n;
 		i++;
 	}
