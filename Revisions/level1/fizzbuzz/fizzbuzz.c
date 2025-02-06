@@ -3,25 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   fizzbuzz.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: ep <marvin@42.fr>                          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/06 01:24:35 by ep                #+#    #+#             */
 /*   Updated: 2025/02/06 01:59:34 by ep               ###   ########.fr       */
+=======
+/*   By: erpascua <erpascua@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/02/05 21:43:44 by erpascua          #+#    #+#             */
+/*   Updated: 2025/02/06 00:02:15 by erpascua         ###   ########.fr       */
+>>>>>>> 20fa684 (day -1)
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
+<<<<<<< HEAD
 void	ft_putchar(char c)
 {
 	write(1, &c, 1);
 }
 
 void	ft_putstr(char *str)
+=======
+void	ft_putchar()
+{
+	write(1,&c, 1);
+}
+
+void	ft_putstr()
+>>>>>>> 20fa684 (day -1)
 {
 	int	i;
 
 	i = 0;
+<<<<<<< HEAD
 	while (str[i])
 	{
 		ft_putchar(str[i]);
@@ -74,3 +91,9 @@ int	main(void)
 	nb = 1;
 	fizzbuzz(nb);
 }
+=======
+	while(str)
+}
+
+int	fizzbuzz()
+>>>>>>> 20fa684 (day -1)
